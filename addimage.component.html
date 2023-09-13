@@ -1,0 +1,40 @@
+
+
+<body>
+    <div class="container-fluid"> 
+      <div class="twelve">
+      <h1>Cars Gallery</h1>
+    </div>
+      <section *ngIf="cars.length">
+        <div class="row">
+          <div class="col-lg-4 col-sm-12 ml-2 mr-2" *ngFor="let car of cars">
+            <div class="single-team" [style.background-image]="'url(' + baseUrl + car.imageUrl + ')'">
+              <div class="content">
+                <h3>{{ car.make }} <span>{{ car.model }}</span></h3>
+                <p>{{car.imageUrl}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div> 
+</body>
+
+  
+
+
+
+
+<!-- <body>   
+<p>Cars Gallery</p>
+<section *ngIf="cars.length">
+    <div class="grid-gallery">
+        <div class="grid-item" *ngFor="let car of cars">
+            <a href="cars" data-lightbox="gridImage">
+                <img [src]="baseUrl + car.imageUrl" alt="{{ car.make }}">
+            </a>
+        </div>
+    </div>
+</section>
+
+</body> -->
