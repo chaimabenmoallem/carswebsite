@@ -1,0 +1,79 @@
+
+<body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="#" class="logo">Cars<span>Site</span></a>
+            
+            <!-- Enhance the search section -->
+            <div class="search-box container" [class.active]="isActive">
+                <div class="input-container"> 
+                    <input [(ngModel)]="searchTerm" placeholder="Search Cars Here ...">
+                    <button class="searchbtn" (click)="searchCar()">Search</button>
+                </div>
+                
+                <ul *ngIf="suggestions.length > 0" class="suggestions-list">
+                    <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li>
+                </ul>
+            </div>
+            
+            
+            <i class='bx bx-search' id="search-icon" (click)="toggleSearch()"></i>
+        </div>
+    </header>
+    
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1> Our Car Collection <br> Features Multiple<span><br> Makes.</span></h1>
+            <a class="btn" (click)="ViewAllCars()">View All Cars</a>
+            
+            <!-- Image from the specific search term -->
+            <img *ngIf="carImageUrl" [src]="baseUrl + carImageUrl" alt="Car Image">
+
+            
+
+            
+        </div>
+    </section>
+</body>
+
+
+
+
+
+
+
+
+
+
+<!-- <body>
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="#" class="logo">Cars<span>Site</span></a>
+            
+           
+            <div class="search-box container" [class.active]="isActive">
+               
+                <input type="text" #searchInput (keyup)="onSearchChange(searchInput.value)" placeholder="Search...">
+            
+
+                
+                <ul *ngIf="suggestions.length > 0" class="suggestions-list">
+                    <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li>
+                </ul>
+            </div>
+            
+            <i class='bx bx-search' id="search-icon" (click)="toggleSearch()"></i>
+        </div>
+    </header>
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1> Our Car Collection <br> Features Multiple<span><br> Makes.</span></h1>
+            <button (click)="ViewAllCars()">View All Cars</button>
+
+        </div>
+    </section>
+    
+      
+</body> -->

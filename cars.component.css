@@ -1,0 +1,228 @@
+/*Fonts*/
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap'); */
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box; 
+}
+
+/* :root {
+    --main-color:#d90429 ;
+    --text-color:#020102 ;
+    --bg-color:#fff ;
+} */
+
+section {
+ padding: 4rem 0 2rem;
+}
+
+img {
+    width: 100%;   
+}
+
+body {
+    color: #020102;
+}
+
+.container{
+    max-width: 1068px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 35px;
+}
+
+#menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #020102;
+    display: none;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 700;
+    color: #020102;
+}
+
+.logo span{
+    color: #d90429;
+}
+
+#search-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.search-box {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    left: 0;
+    background: #fff;
+    box-shadow: 4px 4px 20px rgb(15 54 55 / 10%);
+    border: 1px solid #d90429;
+    border-radius: 0.5rem;
+    clip-path: circle(0% at 100% 0%) ;
+}
+
+.search-box.active{
+    clip-path: circle(144% at 100% 0%) ;
+    transition: 0.4s;
+}
+.search-box input {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.home {
+    /* max-width: 1300px; */
+    /* margin: auto; */
+
+    height: 98vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    background: url(src/app/images/Background-home.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center left;
+}
+
+
+.home-text {
+    padding-left: 130px;
+
+}
+.home-text h1 {
+    padding-bottom: 100px;
+    font-size: 65px;
+    text-transform: uppercase;
+}
+
+.home-text span {
+    color: #d90429;
+}
+
+.btn{
+    padding: 10px 22px;
+    background:#d90429;
+    color:#fff ;
+    font-weight: 400;
+}
+
+.btn:hover{
+    background: #fd052f;
+}
+
+.input-container button{
+
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    height: 50px;
+    width: 100px;
+    background: #d90429;
+    border-color: #d90429;
+    border-radius: 7%;
+    
+   }
+.searchbtn{
+    padding: 10px 22px;
+    color: #fff;  
+}
+
+.searchbtn:hover{
+    background: #fd052f;
+}
+
+/*Responsive*/
+
+@media (max-width : 1080px)
+{
+    .container{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media (max-width: 991px)
+{
+    .section{
+        padding: 3rem 0 1rem;
+    }
+
+    .home-text{
+        padding-left: 2rem;
+    }
+
+    .home-text h1 {
+        font-size: 2.1rem;
+    }
+}
+
+@media (max-width : 768px) {
+    .search-box input {
+        padding: 15px;
+    }
+    #menu-icon {
+        display: initial;
+    }
+}
+
+
+
+.suggestions-list {
+  list-style-type: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+
+
+
+
+
+
