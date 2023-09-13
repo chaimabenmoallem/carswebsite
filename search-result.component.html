@@ -1,0 +1,33 @@
+<div *ngFor="let detail of carDetails" class="row">
+<div class="example-2 card">
+  <div class="wrapper" [style.background-image]="'url(http://localhost:8080' + detail.imageUrl + ')'">
+    <a href="#" class="close" (click)="close()"></a> 
+    <div class="header">
+        <!-- <div class="date">
+          <span class="day">12</span>
+          <span class="month">Aug</span>
+          <span class="year">2016</span>
+        </div> -->
+        <ul class="menu-content">
+          <li>
+            <a href="#" class="fa fa-bookmark-o"></a>
+          </li>
+          <!-- <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
+          <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li> -->
+        </ul>
+      </div>
+      <div class="data">
+        <div class="content">
+          <span *ngIf="detail.make" class="author">{{detail.make}}</span>
+          <h1 *ngIf="detail.model" class="title"><a href="#">{{detail.model}}</a></h1>
+          <p *ngIf="detail.energy && detail.transmission_type" class="text">{{detail.energy}} - {{detail.transmission_type}}</p>
+            
+        </div>
+      </div>
+      
+      
+    
+      
+    </div>
+  </div>
+</div>

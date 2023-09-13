@@ -1,0 +1,229 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+* {
+    box-sizing: border-box;
+    
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #034378;  */
+    /* background-image: conic-gradient(#ffffff, #c6fff6, #eafffc, #c4e7ff, #d1eeff, #aae4ff, #ffffff); */
+    background-image: -webkit-conic-gradient(from 195.47deg at 50% 50%, #ffffff 0%, #c6fff6 12%, #eafffc 24%, #c4e7ff 43%, #d1eeff 60%, #aae4ff 76%, #ffffff 100%);
+    background-image: conic-gradient(from 195.47deg at 50% 50%, #ffffff 0%, #c6fff6 12%, #eafffc 24%, #c4e7ff 43%, #d1eeff 60%, #aae4ff 76%, #ffffff 100%);
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.row {
+    display: flex;
+    justify-content: center; /* This will center horizontally */
+    align-items: center;     /* This will center vertically */
+    max-width: 900px;
+    margin: 0 auto;
+    height: 100vh;
+    
+   
+}
+
+.card {
+  
+      
+    padding: 0 1.7rem;
+  
+    box-sizing: border-box;
+  
+}
+
+.card .menu-content {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.card .menu-content li {
+    display: inline-block;
+}
+
+.card .menu-content a {
+    color: #fff;
+}
+
+.card .menu-content span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Open Sans';
+    transform: translate(-50%, 0);
+}
+
+.card .wrapper {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+    min-height: 640px;
+    width: 1500px;
+    height: 900px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 3%;
+   
+}
+
+.card .wrapper:hover .data {
+    transform: translateY(0);
+}
+
+.card .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+}
+
+.card .data .content {
+    padding: 1em;
+    position: relative;
+    z-index: 1;
+}
+
+.card .data .content p {
+   font-size: 30px;
+   color: #fff;
+}
+
+.card .data .content a {
+    margin-top: 20px;
+    font-size: 32px;
+    color: #ffffff;
+ }
+
+.card .author {
+    font-size: 42px;
+    
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.card .title {
+   
+    margin-top: 10px;
+}
+
+.card .text {
+    
+    height: 70px;
+    margin: 0;
+}
+
+.card input[type='checkbox'] {
+    display: none;
+}
+
+.card input[type='checkbox']:checked + .menu-content {
+    transform: translateY(-60px);
+}
+/* 
+.example-2 .wrapper {
+    background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center / cover no-repeat;
+} */
+
+.example-2 .header {
+    color: #fff;
+    padding: 1em;
+}
+
+.example-2 .header .date {
+    float: left;
+    font-size: 12px;
+}
+
+.example-2 .menu-content {
+    float: right;
+}
+
+.example-2 .menu-content li {
+    margin: 0 5px;
+    position: relative;
+}
+
+.example-2 .data {
+    color: #fff;
+    transform: translateY(calc(70px + 4em));
+}
+
+.example-2 .title a {
+    color: #fff;
+}
+
+/* .example-2 .button {
+    display: block;
+    width: 100px;
+    margin: 2em auto 1em;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    font-weight: 700;
+}
+
+.example-2 .button:after {
+    content: '\2192';
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: all 0.3s;
+}
+
+.example-2 .button:hover:after {
+    transform: translate(5px, -50%);
+    opacity: 1;
+} */
