@@ -4,6 +4,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { Router } from '@angular/router';
 import { cars } from '../addimage/cars';
 import { SharedDataService } from 'src/app/services/shared-data.service'
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -27,7 +28,8 @@ export class CarsComponent implements OnInit {
 
   searchTerm: string = '';
 
-  suggestions: string[] = [];
+  suggestions: any[] = [];
+
 
   allCars: any[] = [];
   showAllCars: boolean = false;
@@ -92,13 +94,32 @@ export class CarsComponent implements OnInit {
 
   onSearchChange(term: string) {
     if (term && term.length > 0) {
-      this.searchService.getAutoSuggestions(term).subscribe(data => {
-        this.suggestions = data;
-      });
+        this.searchService.getCombinedAutoSuggestions(term).subscribe(data => {
+            this.suggestions = data;
+        });
     } else {
-      this.suggestions = [];
+        this.suggestions = [];
     }
+}
+
+selectedMake: string | null = null;
+selectedModel: string | null = null;
+selectedEnergy: string | null = null;
+
+selectSuggestion(suggestion: any) {
+  if (suggestion.type === 'make') {
+      this.selectedMake = suggestion.text;
+  } else if (suggestion.type === 'model') {
+      this.selectedModel = suggestion.text;
+  } else if (suggestion.type === 'energy') {
+      this.selectedEnergy = suggestion.text;
   }
+
+  this.searchTerm = suggestion
+  this.suggestions = []; 
+}
+
+ 
 
   // onSearch(term: string) {
   //   if (term && term.length > 0) {
