@@ -11,6 +11,7 @@ export class SearchService {
   baseUrl= "http://localhost:8080"
 
   constructor(private http: HttpClient) { }
+  
 // Modify your service method in Angular to return multiple matches
 searchCarByPriority(terms: string[]): Observable<cars[]> {
   const termPath = terms.join('_');
@@ -28,9 +29,9 @@ searchCarByPriority(terms: string[]): Observable<cars[]> {
   //   return this.http.post('http://localhost:8080/search/term', term);
   // }
 
-  getAutoSuggestions(term: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/api/autoSuggest/${term}`);
-  }
+  getCombinedAutoSuggestions(term: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/drop/api/related-options/autocomplete/combined?prefix=${term}`);
+}
 
   getAllCars(): Observable<any> {
     return this.http.get(`${this.baseUrl}/drop/api/related-options/all`);
