@@ -5,22 +5,25 @@
             <i class='bx bx-menu' id="menu-icon"></i>
             <a href="#" class="logo">Cars<span>Site</span></a>
             
-            <!-- Enhance the search section -->
+            <!-- Search Section -->
             <div class="search-box container" [class.active]="isActive">
                 <div class="input-container"> 
-                    <input [(ngModel)]="searchTerm" placeholder="Search Cars Here ...">
+                    <input [(ngModel)]="searchTerm" (keyup)="onSearchChange(searchTerm)" placeholder="Search Make/Model/Energy...">
                     <button class="searchbtn" (click)="searchCar()">Search</button>
                 </div>
-                
-                <ul *ngIf="suggestions.length > 0" class="suggestions-list">
-                    <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li>
-                </ul>
+    
+                <!-- Suggestions Section -->
+                <div class="suggestions-box" *ngIf="suggestions.length > 0">
+                    <ul class="suggestions-list">
+                        <li *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+                    </ul>
+                </div>
             </div>
-            
             
             <i class='bx bx-search' id="search-icon" (click)="toggleSearch()"></i>
         </div>
     </header>
+    
     
     <section class="home" id="home">
         <div class="home-text">
