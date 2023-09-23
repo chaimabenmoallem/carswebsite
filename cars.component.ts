@@ -43,6 +43,242 @@ export class CarsComponent implements OnInit {
   carImageUrl: string | null = null;
   baseUrl: string = 'http://localhost:8080';
 
+//   generateTermCombinations(terms: string[]): string[][] {
+//     let combinations: string[][] = [];
+
+//     for (let i = terms.length; i > 0; i--) {
+//         for (let j = 0; j + i <= terms.length; j++) {
+//             combinations.push(terms.slice(j, j + i));
+//         }
+//     }
+
+//     return combinations;
+// }
+
+
+  // Called when the search button is clicked
+  searchCar() {
+    const terms = this.searchTerm.split(' ');
+    this.searchService.getCarDetailsByTerm(terms).subscribe({
+        next: (data: cars[]) => {
+            console.log("API Response:", data);
+            if (data && data.length > 0) {
+                this.carImageUrl = this.baseUrl + data[0].imageUrl;
+                this.sharedDataService.changeCarDetails(data);
+                this.router.navigate(['/searchResult']);
+            } else {
+                console.error("Car not found.");
+            }
+        },
+        error: (error) => {
+            console.error("Error fetching car details:", error);
+        }
+    });
+}
+
+  
+
+  
+//   performLayeredSearch(terms: string[]) {
+//     const combinations = this.generateTermCombinations(terms);
+//     this.tryNextCombination(combinations, 0);
+// }
+
+// tryNextCombination(combinations: string[][], index: number) {
+//   if (index >= combinations.length) {
+//     console.error("All search combinations exhausted. Car not found.");
+//     return;
+// }
+ 
+  
+
+// const currentTerms = combinations[index];
+// this.searchService.searchCarByPriority(currentTerms).subscribe({
+//         next: (data: cars[]) => {
+//           console.log('Received data for combination:', combinations[index]);
+//           if (data && data.length > 0) {
+//                 this.carImageUrl = this.baseUrl + data[0].imageUrl;
+//                 console.log("API Response:", data);
+//                 this.sharedDataService.changeCarDetails(data);
+//                 this.router.navigate(['/searchResult']);
+//               } else {
+//                   this.tryNextCombination(combinations, index + 1);  // Try next combination
+//               }
+//         },
+//         error: (error) => {
+//           console.log('Error received for combination:', combinations[index]);
+//             if (error.status === 404) {
+//                 // Handle the 404 error. Maybe try the next combination.
+//                 this.tryNextCombination(combinations, index + 1);
+//             } else {
+//                 console.error("Error fetching car details:", error);
+//             }
+//         }
+//     });
+// }
+
+  
+
+
+
+
+
+
+
+  toggleSearch() {
+    this.isActive = !this.isActive;
+  }
+
+  onSearchChange(term: string) {
+    if (term && term.length > 0) {
+        this.searchService.getCombinedAutoSuggestions(term).subscribe(data => {
+            this.suggestions = data;
+        });
+    } else {
+        this.suggestions = [];
+    }
+}
+
+selectedMake: string | null = null;
+selectedModel: string | null = null;
+selectedEnergy: string | null = null;
+
+selectSuggestion(suggestion: any) {
+  if (suggestion.type === 'make') {
+      this.selectedMake = suggestion.text;
+  } else if (suggestion.type === 'model') {
+      this.selectedModel = suggestion.text;
+  } else if (suggestion.type === 'energy') {
+      this.selectedEnergy = suggestion.text;
+  }
+
+  this.searchTerm = suggestion
+  this.suggestions = []; 
+}
+
+ 
+
+  // onSearch(term: string) {
+  //   if (term && term.length > 0) {
+  //     this.searchService.sendTerm(term).subscribe((data) => {
+  //       this.suggestions = data;
+  //     });
+  //   } else {
+  //     this.suggestions = [];
+  //   }
+  // }
+  // this.searchService.sendSearchTerm(term).subscribe(() => {
+  //     console.log('Term sent!');
+  // });
+}
+
+//   onSubmitSearch() {
+
+//     console.log('Search term value:', this.searchTerm);
+//     this.http.get(`http://localhost:8080/tuning/search?tuning=${this.searchTerm}`).subscribe({
+
+
+//       next: (response) => {
+//         console.log("Response from backend:", response);
+//     },
+//     error: (error) => {
+//       console.error("Error from backend:", error);
+//         if (error.status === 404) {  // Term not found
+//           this.addTermToTableDisplay();
+//         }
+//     }
+// });
+//   }
+
+//   addTermToTableDisplay() {
+//     this.http.post('http://localhost:8080/tuning/add', { term: this.searchTerm }).subscribe(
+//       () => {
+//         console.log('Term added to table.');
+//       }
+//     );
+//   }
+// }
+  // onLoadData(): void {
+  //   if (!this.isDataLoaded) {
+  //     this.elasticsearchService.fetchData().subscribe(response => {
+  //       this.data = response.hits.hits.map((hit: any) => hit._source);
+  //       this.isDataLoaded = true;
+  //     });
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SearchService } from 'src/app/services/search.service';
+import { Router } from '@angular/router';
+import { cars } from '../addimage/cars';
+import { SharedDataService } from 'src/app/services/shared-data.service'
+import { forkJoin } from 'rxjs';
+@Component({
+  selector: 'app-cars',
+  templateUrl: './cars.component.html',
+  styleUrls: ['./cars.component.css']
+
+})
+export class CarsComponent implements OnInit {
+
+  constructor(
+    private http: HttpClient,
+    private searchService: SearchService,
+    private router: Router,
+    private sharedDataService: SharedDataService) { }
+
+  ngOnInit(): void { }
+  //search bar
+  isActive = false;
+  //elasticsearch 
+  data: any[] = [];
+  isDataLoaded: boolean = false;
+
+  searchTerm: string = '';
+
+  suggestions: any[] = [];
+
+
+  allCars: any[] = [];
+  showAllCars: boolean = false;
+  cars: cars[] = [];
+
+  ViewAllCars() {
+    this.router.navigate(['/all-cars']);
+  }
+
+
+  carImageUrl: string | null = null;
+  baseUrl: string = 'http://localhost:8080';
+
   // Called when the search button is clicked
   searchCar() {
     const terms = this.searchTerm.split(' ');
@@ -170,3 +406,4 @@ selectSuggestion(suggestion: any) {
   //   }
   // }
 
+*/
